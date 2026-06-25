@@ -1,0 +1,88 @@
+# ═══════════════════════════════════════════════
+# ONLY the Model CODE goes to GitHub
+# NO datasets, NO weights, NO apps
+# ═══════════════════════════════════════════════
+
+# Dataset images (too large — link to Kaggle in README instead)
+Model/dataset/
+dataset/
+
+# Large model weights (hosted on Hugging Face only)
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.tflite
+*.onnx
+Model/weights/
+
+# Mobile app (NOT part of this repo)
+axon_app/
+Axon-Alzheimer-App.apk
+
+# Backend (NOT part of this repo)
+axon_backend/
+
+# Portfolio website (NOT part of this repo)
+portfolio/
+
+# Hugging Face deployment folder (separate)
+huggingface_deployment/
+
+# Diagrams (internal docs)
+diagrams/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+.env.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Notebooks checkpoints
+.ipynb_checkpoints
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+read_notebook.py
+start.bat
+instance/
+uploads/
