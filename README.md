@@ -51,31 +51,30 @@ We used the **Augmented Alzheimer MRI Dataset** containing **33,984 augmented MR
 
 ## 🏗️ Model Architecture Pipeline
 
-Our custom **Sequential CNN** was designed for optimal feature extraction from grayscale MRI scans, and deployed directly to Hugging Face for real-time inference:
+Our custom **Sequential CNN** was designed for optimal feature extraction from grayscale MRI scans, perfectly matching the architecture detailed in our published research:
 
 ```mermaid
 graph TD
-    A[🧠 Input MRI Scan\n224x224 Pixels] --> B(⚙️ MobileNetV2 Preprocessing\nNormalization: pixel/127.5 - 1.0)
-    B --> C[Conv2D Layer 1\n128 filters + BatchNorm + ReLU]
-    C --> D[Conv2D Layer 2\n256 filters + BatchNorm + ReLU]
-    D --> E[MaxPooling2D\n3x3, stride 3]
-    E --> F[Channel Squeeze\n1x1 Convolutions]
-    F --> G[Dense Layers\nDropout 0.3]
-    G --> H{Softmax Output\n4 Classes}
-    H -->|HDF5 Weights| I((🤗 Hugging Face Spaces\nGradio Web Interface))
+    A[🧠 Input MRI Scan\n224x224 Pixels] --> B[Conv2D Layer 1\n128 filters, 8x8, Stride 3x3\nBatchNorm + ReLU]
+    B --> C[Conv2D Layer 2\n256 filters, 5x5\nBatchNorm + ReLU + MaxPool]
+    C --> D[Conv2D Layer 3\n256 filters, 3x3\n+ 1x1 Convolutions for Squeeze]
+    D --> E[Conv2D Layer 4\n512 filters\n+ Deep Conv Blocks + MaxPool]
+    E --> F[Flatten Layer]
+    F --> G[Dense Layer 1\n1024 neurons + 50% Dropout]
+    G --> H[Dense Layer 2\n1024 neurons + 50% Dropout]
+    H --> I{Softmax Output\n4 Classes}
+    I -->|HDF5 Weights| J((🤗 Hugging Face Spaces\nGradio Web Interface))
     
     style A fill:#2d3748,stroke:#4fd1c5,stroke-width:2px,color:#fff
-    style B fill:#2d3748,stroke:#63b3ed,stroke-width:2px,color:#fff
-    style H fill:#2d3748,stroke:#f6e05e,stroke-width:2px,color:#fff
-    style I fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#fff
+    style I fill:#2d3748,stroke:#f6e05e,stroke-width:2px,color:#fff
+    style J fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#fff
 ```
 
 **Key Design Decisions:**
-- **MobileNetV2 Normalisation**: `(pixel / 127.5) - 1.0` for input standardisation
-- **Batch Normalisation** after every convolutional layer for stable gradient flow
-- **1×1 Convolutions** for efficient channel-wise feature mixing
-- **Dropout (30%)** in dense layers to prevent overfitting
-- **22 Epochs** of training with early convergence
+- **Hierarchical Feature Extraction**: Progressing from 128 to 512 filters to capture complex neurodegenerative patterns.
+- **Batch Normalisation**: Applied after convolutions to stabilize training and speed up convergence.
+- **1×1 Convolutions**: Used for feature refinement and reducing dimensional complexity.
+- **Aggressive Dropout (50%)**: Applied in the 1024-neuron dense layers to heavily penalize overfitting.
 
 ---
 
