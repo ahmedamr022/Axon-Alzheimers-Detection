@@ -1,8 +1,4 @@
 <div align="center">
-  <img src="assets/architecture.png" alt="Axon — Alzheimer's Detection" width="100%">
-  
-  <br/>
-  
   <h1>🧠 Axon: Alzheimer's Disease Detection from MRI Scans</h1>
   
   <p>
@@ -53,26 +49,25 @@ We used the **Augmented Alzheimer MRI Dataset** containing **33,984 augmented MR
 
 ---
 
-## 🏗️ Model Architecture
+## 🏗️ Model Architecture Pipeline
 
-Our custom **Sequential CNN** was designed for optimal feature extraction from grayscale MRI scans:
+Our custom **Sequential CNN** was designed for optimal feature extraction from grayscale MRI scans, and deployed directly to Hugging Face for real-time inference:
 
-```
-Input (224 × 224 × 3)
-    │
-    ├── Conv2D (128 filters, 7×7) + BatchNorm + ReLU
-    ├── Conv2D (256 filters, 3×3) + BatchNorm + ReLU
-    ├── MaxPooling2D (3×3, stride 3)
-    │
-    ├── Conv2D (256 filters, 3×3) + BatchNorm + ReLU
-    ├── Conv2D (256 filters, 1×1) + BatchNorm + ReLU  ← Channel Squeeze
-    ├── Conv2D (256 filters, 1×1) + BatchNorm + ReLU  ← Channel Squeeze
-    │
-    ├── Flatten
-    ├── Dense (256) + Dropout(0.3)
-    ├── Dense (128) + Dropout(0.3)
-    │
-    └── Dense (4, Softmax) → Classification
+```mermaid
+graph TD
+    A[🧠 Input MRI Scan\n224x224 Pixels] --> B(⚙️ MobileNetV2 Preprocessing\nNormalization: pixel/127.5 - 1.0)
+    B --> C[Conv2D Layer 1\n128 filters + BatchNorm + ReLU]
+    C --> D[Conv2D Layer 2\n256 filters + BatchNorm + ReLU]
+    D --> E[MaxPooling2D\n3x3, stride 3]
+    E --> F[Channel Squeeze\n1x1 Convolutions]
+    F --> G[Dense Layers\nDropout 0.3]
+    G --> H{Softmax Output\n4 Classes}
+    H -->|HDF5 Weights| I((🤗 Hugging Face Spaces\nGradio Web Interface))
+    
+    style A fill:#2d3748,stroke:#4fd1c5,stroke-width:2px,color:#fff
+    style B fill:#2d3748,stroke:#63b3ed,stroke-width:2px,color:#fff
+    style H fill:#2d3748,stroke:#f6e05e,stroke-width:2px,color:#fff
+    style I fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#fff
 ```
 
 **Key Design Decisions:**
