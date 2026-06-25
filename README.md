@@ -10,7 +10,7 @@
   </p>
 
   <p>
-    <a href="https://huggingface.co/spaces/ahmedamr022/axon-alzheimer-detection"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Live%20Demo-blue?style=for-the-badge" alt="Hugging Face"></a>
+    <a href="https://huggingface.co/spaces/BoTahex/axon-alzheimer-detection"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Live%20Demo-blue?style=for-the-badge" alt="Hugging Face"></a>
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
     <img src="https://img.shields.io/badge/TensorFlow%2FKeras-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow">
     <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV">
@@ -117,7 +117,7 @@ Test Loss:      0.2519
 
 Try the model instantly — no setup required:
 
-👉 **[Launch Axon on Hugging Face Spaces](https://huggingface.co/spaces/ahmedamr022/axon-alzheimer-detection)**
+👉 **[Launch Axon on Hugging Face Spaces](https://huggingface.co/spaces/BoTahex/axon-alzheimer-detection)**
 
 Upload any brain MRI scan and get real-time classification with confidence scores and clinical recommendations.
 
@@ -142,7 +142,7 @@ Open and run the Jupyter notebook:
 jupyter notebook Model/alzheimer_cnn_training.ipynb
 ```
 
-> **Note**: The trained `.h5` weights (~125MB) are hosted on [Hugging Face](https://huggingface.co/spaces/ahmedamr022/axon-alzheimer-detection) and are not included in this repository to keep it lean.
+> **Note**: The trained `.h5` weights (~125MB) are hosted on [Hugging Face](https://huggingface.co/spaces/BoTahex/axon-alzheimer-detection) and are not included in this repository to keep it lean.
 
 ---
 
